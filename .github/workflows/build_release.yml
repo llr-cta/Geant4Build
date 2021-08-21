@@ -28,7 +28,7 @@ jobs:
     - name: Fetch Geant4 release
       shell: bash
       run: |
-        curl https://github.com/Geant4/geant4/archive/refs/tags/v${{ matrix.release }}.tar.gz | tar -zxf -
+        curl -L https://github.com/Geant4/geant4/archive/refs/tags/v${{ matrix.release }}.tar.gz | tar -zxf -
     - name: Configure
       shell: bash
       run: |
