@@ -34,9 +34,9 @@ jobs:
       run: |
         mkdir build
         cd build
-        cmake -DGEANT4_INSTALL_DATA=ON \
-              -DCMAKE_BUILD_TYPE=Release \
+        cmake -DCMAKE_BUILD_TYPE=Release \
               -DCMAKE_INSTALL_PREFIX=/usr ../geant4-${{ matrix.release }}
+#              -DGEANT4_INSTALL_DATA=ON \
     - name: Build
       shell: bash
       run: |
@@ -48,12 +48,12 @@ jobs:
         find /usr -print > files1.txt
         cd build
         sudo make install
-    - name: Make TGZ package
+    - name: Make TBZ2 package
       shell: bash
       run: |
         find /usr -print > files2.txt
         cat files1.txt files2.txt | sort | uniq -u > files3.txt
-        tar -jcvf Geant4-${{ matrix.os }}-${{ matrix.release }}.tbz2 -C / -T files3.txt
+        tar -jcf Geant4-${{ matrix.os }}-${{ matrix.release }}.tbz2 -C / -T files3.txt
         ls -l
     - uses: "marvinpinto/action-automatic-releases@latest"
       with:
